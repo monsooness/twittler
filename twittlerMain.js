@@ -1,54 +1,46 @@
 $(document).ready(function(){
-  var $feed = $('.feedContainer');
-  var $user = $('.userContainer');
-  $feed.html('');
-  var index;
-  var $tweet;
-  var currentTweets = streams.home.slice();
-  // Initial Tweets
-  renderTweet(currentTweets);
-  // setInterval(function() {
-  //   var end = streams.home.length - 1;
-  //   while(index <= end){
-  //     tweet = streams.home[index];
-  //     $tweet = $(`<div id="tweet"><div class="${tweet.user}"></div><div class="userDate"></div><div class="message"></div></div>`);
-  //     $tweet.find(`.${tweet.user}`).text(tweet.user);
-  //     $tweet.find('.userDate').text(`@ ${tweet.user} : ${tweet.created_at}`);
-  //     $tweet.find('.message').text(tweet.message);
-  //     $tweet.appendTo($feed).slideDown(600);
-  //     index += 1;
-  //   }
-  // }, 2000);
-
- 
-  function renderTweet(array) {
-    index = array.length - 1;
-    while(index >= 0){
-      tweet = array[index];
-      $tweet = $(`<div id="tweet"><div class="${tweet.user}"></div><div class="userDate"></div><div class="message"></div></div>`);
-      $tweet.find(`.${tweet.user}`).text(tweet.user);
-      $tweet.find('.userDate').text(`@ ${tweet.user} : ${tweet.created_at}`);
-      $tweet.find('.message').text(tweet.message);
-      $tweet.appendTo($feed).slideDown(600);
+  // Call to refresh feed
+  var allTweets;
+  var $tweetUpdate = $(`<div class='tweetUpdate'>View New Tweets</div>`);
+  var numTweets;  
+  const refreshFeed = function(item) {
+    var $feed = $('.feed');
+    $feed.empty();
+    var $tweet;
+    allTweets = streams.home.slice();
+    if(users.includes(item)) {
+      allTweets = allTweets.filter(function(tweet){
+        return tweet.user === item;
+      });
+    }
+    var index = allTweets.length - 1;
+    while(index >= 0){       
+      var tweet = allTweets[index];
+      $tweet = $(`<div class="tweet"><span class="${tweet.user}icon"></span><span class="${tweet.user}">${tweet.user}</span><div class="userDate">
+                  @ ${tweet.user} : ${tweet.created_at}</div><div class="message">${tweet.message}</div></div>`);
+      $tweet.appendTo($feed).slideDown(500);
       index -= 1;
     }
   }
-
   // we should listen for a click on any of the users
-  // 
-
+  setInterval(function () {
+    if(allTweets.length < streams.home.length) {
+      $('.tweetUpdate').removeClass('display').text('View New Tweets');   
+    }
+  }, 5000);
   // Handler to look at user tweets only.
-  $(document).on('click','div', function(){
+  $('.users').on('click','div', function(){
     var clicked = $(this).attr('class');
-    var userCurrent = streams.users[clicked].slice();
-    $feed.html('');
-    renderTweet(userCurrent);
+    refreshFeed(clicked);
   });
-  // Implement ability to filter content based on specific user click
-
-  // Making it look pretty
-
-  // Change Time Format
-
-
+  $('.tweet').on('click','div', function(){
+    var clicked = $(this).attr('class');
+    alert(clicked);
+    refreshFeed(clicked);
+  });
+  $('.tweetUpdate').on('click', function(){
+    $('.tweetUpdate').addClass('display');
+    refreshFeed();
+  }); 
+  refreshFeed();
 });
