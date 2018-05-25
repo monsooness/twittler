@@ -1,0 +1,157 @@
+body
+{
+	background: #1E2126;
+}
+.nav 
+{
+	display: flex;
+	background: linear-gradient(to right, #4D6170 , #9EA3B0);
+	min-width: 25%;
+	height: 200px;
+	border: black;
+	color: white;
+	align-items: center;
+	justify-content: center;
+	border-radius: 25px;
+	flex-direction: column;
+}
+.logo
+{
+	background: url(src/twittler_logo.png);
+	height: 150px;
+	width: 150px;
+}
+.Name
+{
+	margin-left: 20px;
+	font-weight: bold;
+	font-size: 30px;
+	text-align: center;
+	letter-spacing: 30px;
+}
+.mainContainer 
+{
+	display: flex;
+	justify-content: center;
+	max-width: 100%;
+	min-width: 25%;
+	min-height: 500px;
+	margin: 2%;
+}
+.userContainer
+{
+	background: white;
+	order: 2;
+	min-width: 14%;
+	max-width: 290px;
+	max-height: 500px;
+	margin: 5px;
+	color: black;
+	justify-content: flex-start;
+	flex-grow: 1;
+}
+.feedContainer
+{
+	background: white;
+	order: 1;
+	min-width: 50%;
+	max-width: 900px;
+	margin:5px;
+	color: black;
+	flex-grow:6;
+}
+ol
+{
+	list-style: none;
+	height: 50px;
+}
+.tweetUpdate
+{
+	background: hsl(100 10% 90%);
+	text-align: center;
+	line-height: 50px;
+	border-bottom: 2px solid hsl(100 10% 90%);
+	height: 50px;
+}
+.tweetUpdate:hover
+{
+	background: hsl(100 20% 70%);
+	border-bottom: 2px solid hsl(100 20% 70%);
+	cursor:pointer;
+}
+.feed
+{
+	justify-content: center;
+}
+.tweet
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.tweet:hover
+{
+	background-color: gray;
+}
+
+.shawndrost, 
+.douglascalhoun, 
+.mracus, 
+.sharksforcheap
+{
+	margin-left: 10px;
+	font-weight: bold;
+	font-size: 1.3em;
+	flex-flow: column wrap;
+	cursor: pointer;
+}
+.shawndrosticon
+{
+	background: url(src/av_01150.png) no-repeat;
+	background-size: 50px;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	display:inline;
+}
+.douglascalhounicon
+{
+	background: url(src/av_02150.png) no-repeat;
+	background-size: 50px;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	display:inline;
+}
+.mracusicon
+{
+	background: url(src/av_03150.png) no-repeat;
+	background-size: 50px;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	display:inline;
+}
+.sharksforcheapicon
+{
+	background: url(src/av_04150.png) no-repeat;
+	background-size: 50px;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	display:inline;
+}
+
+.userDate
+{
+	margin-left: 10px;
+	font-style: italic;
+	font-size: 12px;
+}
+.message
+{
+	margin-left: 10px;
+}
+.display
+{
+	display:none;
+}

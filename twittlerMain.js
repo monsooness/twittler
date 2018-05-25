@@ -8,7 +8,7 @@ $(document).ready(function(){
     $feed.empty();
     var $tweet;
     allTweets = streams.home.slice();
-    if(users.includes(item)) {
+    if(users.includes(item)) { 
       allTweets = allTweets.filter(function(tweet){
         return tweet.user === item;
       });
@@ -31,11 +31,10 @@ $(document).ready(function(){
   // Handler to look at user tweets only.
   $('.users').on('click','div', function(){
     var clicked = $(this).attr('class');
-    refreshFeed(clicked);
+    refreshFeed(clicked); // refreshFeed('mracus');
   });
-  $('.tweet').on('click','div', function(){
+  $('.feed').on('click','span', function(){
     var clicked = $(this).attr('class');
-    alert(clicked);
     refreshFeed(clicked);
   });
   $('.tweetUpdate').on('click', function(){
@@ -44,3 +43,5 @@ $(document).ready(function(){
   }); 
   refreshFeed();
 });
+
+// <div class= "twitWrap"><span class = "icon"></span><span class="tweet"><span class="${tweet.user}">${tweet.user}</span><div class="userDate">@ ${tweet.user} : ${tweet.created_at}</div><div class="message">${tweet.message}</div></span></div>

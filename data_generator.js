@@ -11,14 +11,22 @@ streams.users.shawndrost = [];
 streams.users.sharksforcheap = [];
 streams.users.mracus = [];
 streams.users.douglascalhoun = [];
-window.users = Object.keys(streams.users);
+window.users = Object.keys(streams.users); 
+
 
 // utility function for adding tweets to our data structures
-var addTweet = function(newTweet){
-  var username = newTweet.user;
-  streams.users[username].push(newTweet);
-  streams.home.push(newTweet);
+
+var extend = function(ob1, ob2) {
+    for(var k in ob2) {
+        ob1[k] = ob2[k];
+    }
 };
+
+// var addTweet = function(newTweet){
+//   var username = newTweet.user;
+//   streams.users[username].push(newTweet);
+//   streams.home.push(newTweet);
+// };
 
 // utility function
 var randomElement = function(array){
@@ -38,14 +46,22 @@ var randomMessage = function(){
 };
 
 // generate random tweets on a random schedule
+
+//Per instructions changed generateRandomTweet from normal function to instantiation per prototypal classing
 var generateRandomTweet = function(){
-  var tweet = {};
+  var tweet = Object.create(generateRandomTweet.prototype);
   tweet.user = randomElement(users);
   tweet.message = randomMessage();
   tweet.created_at = new Date();
-  addTweet(tweet);
+  tweet.addTweet();
 };
 
+generateRandomTweet.prototype.addTweet = function() {
+    var username = this.user;
+    streams.users[username].push(this);
+    streams.home.push(this);
+}
+// end of changes to generateRandomTweet
 for(var i = 0; i < 10; i++){
   generateRandomTweet();
 }
