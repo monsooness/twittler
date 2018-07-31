@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  
   // Call to refresh feed
   var allTweets;
   var $tweetUpdate = $(`<div class='tweetUpdate'>View New Tweets</div>`);
@@ -22,12 +23,14 @@ $(document).ready(function(){
       index -= 1;
     }
   }
+  
   // we should listen for a click on any of the users
   setInterval(function () {
     if(allTweets.length < streams.home.length) {
       $('.tweetUpdate').removeClass('display').text('View New Tweets');   
     }
   }, 5000);
+  
   // Handler to look at user tweets only.
   $('.users').on('click','div', function(){
     var clicked = $(this).attr('class');
@@ -44,4 +47,3 @@ $(document).ready(function(){
   refreshFeed();
 });
 
-// <div class= "twitWrap"><span class = "icon"></span><span class="tweet"><span class="${tweet.user}">${tweet.user}</span><div class="userDate">@ ${tweet.user} : ${tweet.created_at}</div><div class="message">${tweet.message}</div></span></div>
